@@ -13,17 +13,12 @@ if status is-interactive
     abbr lg 'lazygit'
     abbr gd 'git diff'
     abbr ga 'git add .'
-    abbr gc 'git commit -am'
+    abbr gca 'git commit -am'
     abbr gl 'git log'
     abbr gs 'git status'
-    abbr gst 'git stash'
-    abbr gsp 'git stash pop'
-    abbr gp 'git push'
-    abbr gpl 'git pull'
     abbr gsw 'git switch'
     abbr gsm 'git switch main'
     abbr gb 'git branch'
-    abbr gbd 'git branch -d'
     abbr gco 'git checkout'
     abbr gsh 'git show'
 
@@ -42,4 +37,28 @@ if status is-interactive
     
     # Custom fish config
     source ~/.config/caelestia/user-config.fish 2> /dev/null
+end
+
+# tmux-sessionizer
+if not contains $HOME/.config/scripts $PATH
+    set PATH $PATH $HOME/.config/scripts/
+end
+bind \cf 'tmux-sessionizer'
+bind \eh 'tmux-sessionizer -s 0\n'
+bind \ej 'tmux-sessionizer -s 1\n'
+bind \ek 'tmux-sessionizer -s 2\n'
+bind \el 'tmux-sessionizer -s 3\n'
+
+function vmrss
+  if test (count $argv) -eq 0
+    echo "Usage: vmrss <PID>"
+    return 1
+  end
+  set pid $argv[1]
+  if test -f "/proc/$pid/status"
+    grep VmRSS /proc/$pid/status
+  else
+    echo "Process with PID $pid not found."
+    return 1
+  end
 end
