@@ -23,8 +23,15 @@ return {
 	},
 	config = function()
 		local actions = require("telescope.actions")
+    local telescopeConfig = require("telescope.config")
+    local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+    table.insert(vimgrep_arguments, "--hidden")
+    table.insert(vimgrep_arguments, "--glob")
+    table.insert(vimgrep_arguments, "!**/.git/*")
+
 		require("telescope").setup({
 			defaults = {
+        vimgrep_arguments = vimgrep_arguments,
 				mappings = {
 					i = {
 						["<c-enter>"] = "to_fuzzy_refine",

@@ -19,6 +19,15 @@ return {
 
 		-- Smear cursor in insert mode.
 		-- See also `vertical_bar_cursor_insert_mode` and `distance_stop_animating_vertical_bar`.
-		smear_insert_mode = true,
+    smear_insert_mode = true,
+
+    -- 120Hz
+    time_interval = 8,
+
+    -- Optional: tighten animation to match snappier 120Hz feel
+    stiffness = 0.8,
+    trailing_stiffness = 0.6,
+    damping = 0.95,
+    distance_stop_animating = 0.5,
 	},
 }
