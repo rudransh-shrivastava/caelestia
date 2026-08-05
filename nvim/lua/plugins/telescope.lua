@@ -28,10 +28,13 @@ return {
     table.insert(vimgrep_arguments, "--hidden")
     table.insert(vimgrep_arguments, "--glob")
     table.insert(vimgrep_arguments, "!**/.git/*")
+    table.insert(vimgrep_arguments, "--glob")
+    table.insert(vimgrep_arguments, "!**/vendor/*")
 
 		require("telescope").setup({
 			defaults = {
         vimgrep_arguments = vimgrep_arguments,
+        file_ignore_patterns = { "vendor/", "%.git/" },
 				mappings = {
 					i = {
 						["<c-enter>"] = "to_fuzzy_refine",
