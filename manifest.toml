@@ -224,11 +224,26 @@ dest = "$XDG_CONFIG_HOME/zed"
 name = "nvim"
 packages = ["neovim"]
 [[components.entries]]
-src = "nvim/colors/caelestia.lua"
-dest = "$XDG_CONFIG_HOME/nvim/colors/caelestia.lua"
+src = "nvim"
+dest = "$XDG_CONFIG_HOME/nvim"
+
+[[components]]
+name = "tmux"
+default = true
+packages = ["tmux"]
+post_install = ["tmux source-file ~/.config/tmux/tmux.conf 2>/dev/null || true"]
 [[components.entries]]
-src = "nvim/lua/plugins/caelestia.lua"
-dest = "$XDG_CONFIG_HOME/nvim/lua/plugins/caelestia.lua"
+src = "tmux"
+dest = "$XDG_CONFIG_HOME/tmux"
+
+[[components]]
+name = "scripts"
+default = true
+packages = ["fzf"]
+post_install = ["chmod +x ${XDG_CONFIG_HOME:-$HOME/.config}/scripts/tmux-sessionizer"]
+[[components.entries]]
+src = "scripts"
+dest = "$XDG_CONFIG_HOME/scripts"
 
 [[components]]
 name = "discord"
