@@ -264,3 +264,18 @@ dest = "$XDG_CONFIG_HOME/uwsm"
 [[components]]
 name = "zen"
 packages = ["zen-browser-bin"]
+
+# --- Personal overrides ---
+# Deployed to ~/.config/caelestia so upstream updates never touch them.
+[[components]]
+name = "user"
+default = true
+[[components.entries]]
+src = "user/hypr-vars.lua"
+dest = "$XDG_CONFIG_HOME/caelestia/hypr-vars.lua"
+[[components.entries]]
+src = "user/hypr-user.lua"
+dest = "$XDG_CONFIG_HOME/caelestia/hypr-user.lua"
+[[components.entries]]
+src = "user/user-config.fish"
+dest = "$XDG_CONFIG_HOME/caelestia/user-config.fish"
