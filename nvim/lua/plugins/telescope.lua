@@ -34,7 +34,6 @@ return {
 		require("telescope").setup({
 			defaults = {
         vimgrep_arguments = vimgrep_arguments,
-        file_ignore_patterns = { "vendor/", "%.git/" },
 				mappings = {
 					i = {
 						["<c-enter>"] = "to_fuzzy_refine",
@@ -43,7 +42,15 @@ return {
 					},
 				},
 			},
-			--  pickers = {}
+			-- NOTE: keep these per-picker, not in `defaults` -- telescope's LSP pickers
+			-- run file_ignore_patterns over the LSP response, so a `vendor/` pattern in
+			-- `defaults` makes grd/grr/gri/grt report "No LSP Definitions found" for any
+			-- vendored symbol. live_grep/grep_string already skip vendor via the
+			-- `--glob !**/vendor/*` in vimgrep_arguments above.
+			pickers = {
+				find_files = { file_ignore_patterns = { "vendor/", "%.git/" } },
+				git_files = { file_ignore_patterns = { "vendor/", "%.git/" } },
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
