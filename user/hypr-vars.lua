@@ -10,6 +10,10 @@ return {
     shadowRange                = 20,
     shadowRenderPower          = 3,
 
+    -- Cursor
+    cursorTheme                = "macOS",
+    cursorSize                 = 24,
+
     -- Keybinds: macOS-style layout, Alt as the primary modifier
     kbGoToWs                   = "ALT",
     kbGoToWsGroup              = "CTRL + ALT",
